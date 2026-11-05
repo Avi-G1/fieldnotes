@@ -2,13 +2,13 @@
 
 Fieldnotes uses RunAnywhere Swift SDK 0.20.24 from the official Swift distribution repository: `https://github.com/RunanywhereAI/runanywhere-swift.git`. The vendored source is based on tag `0.20.24`, commit `f269ccd53f04b2fa2a4767f7264a40363b7ec74a`. The upstream license is at `Vendor/runanywhere-swift/LICENSE`; Git metadata is excluded.
 
-Three local compatibility fixes are applied to the vendored package:
+The initial build and telemetry fixes are:
 
 1. In `Sources/RunAnywhere/Features/TTS/Services/AudioPlaybackManager.swift`, the `AVAudioPlayerDelegate` conformance moves to a separate `@preconcurrency` extension. Without this change, Swift 6.4 infers main-actor isolation from the Objective-C delegate conformance, even though the manager already uses lock-protected state and declares `@unchecked Sendable`. Keeping the conformance separate preserves its cross-task use without spreading actor isolation through the audio pipeline.
 2. `Sources/RunAnywhere/Features/Downloads/DownloadNotifier.swift` skips optional local notifications when `Bundle.main.bundleIdentifier` is absent. This lets command-line and SwiftPM smoke hosts download models without an app bundle or notification center.
 3. `Sources/RunAnywhere/Foundation/Bridge/CppBridge.swift` checks for `RUNANYWHERE_SWIFT_LOCAL_ONLY=1` before registering the telemetry manager, telemetry sink, and device-registration callbacks. Fieldnotes sets the switch before calling `RunAnywhere.initialize`. The SDK's local-only initialization also skips Phase 2. Auth, device registration, and telemetry stay off, but model downloads still make an outbound request to Hugging Face. EventBus continues to report local model lifecycle events.
 
-The patch does not change SDK inference or generation code. It disables telemetry only when the app explicitly selects local-only mode; it does not redirect telemetry to a fake endpoint.
+The patch disables telemetry when the app selects local-only mode. SDK inference and generation code are unchanged.
 
 Both the Swift package manifest and Xcode project point to the local vendor directory. To refresh it, fetch the official tag, reapply and review the actor, notification, telemetry, and model-only transport changes, run the policy tests and offline inference check, then update the upstream commit and these patch notes. This compatibility patch is maintained here; it is not an upstream RunAnywhere change.
 

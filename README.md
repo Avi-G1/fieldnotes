@@ -16,7 +16,7 @@ Fieldnotes runs Qwen2.5 3B Instruct on your Mac or iPhone using RunAnywhere’s 
 
 ## Run on macOS
 
-Requires macOS 14.5+, an Xcode toolchain with Swift 6.2+, and an Apple Silicon Mac for the tested local model path. From this directory:
+Requires macOS 14.5+, an Xcode toolchain with Swift 6.2+, and an Apple Silicon Mac. From this directory:
 
 ```sh
 swift build --build-system native

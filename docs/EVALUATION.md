@@ -1,10 +1,10 @@
-# Fieldnotes evaluation protocol
+# Testing Fieldnotes
 
-The extractor combines a model with English-language rules. [Validation notes](VALIDATION.md) include the Mac results and the physical-phone test. The iPhone 15 Pro Max passed one smoke test. A full phone benchmark and an Airplane Mode check are still to come.
+The extractor combines a model with English-language rules. [Validation notes](VALIDATION.md) include the Mac results and the physical-phone test. The Maya note passed on an iPhone 15 Pro Max. Repeated phone tests and an Airplane Mode check are still to come.
 
 ## Reproduce the current regression report
 
-The set has 32 synthetic cases: ten in `fixtures.json`, eight in `holdout.json`, six in `reported-offers.json`, and eight in `additional-validation.json`. The first 24 informed implementation, so the full set is neither a production accuracy estimate nor an untouched holdout.
+The set has 32 synthetic cases: ten in `fixtures.json`, eight in `holdout.json`, six in `reported-offers.json`, and eight in `additional-validation.json`. The first 24 were used during development. This measures performance on those examples; accuracy on new notes still needs testing.
 
 From the project root:
 
@@ -33,7 +33,7 @@ sh scripts/check-network.sh
 
 These run 15 parser cases, eight language cases, ten evidence checks, and 11 network-policy checks. All 44 passed on 5 November. These checks cover specific examples; accuracy on varied meeting notes needs separate evaluation.
 
-## Review rubric
+## Checking the results
 
 For each result, check that it captures a real action, preserves uncertainty, excludes withdrawn or completed work, and keeps the source wording. A matching quote shows where the words came from; it cannot tell you whether they represent a commitment. Owners and dates remain in the source passage instead of being inferred into separate fields.
 
@@ -43,9 +43,9 @@ The pipeline still misses this implicit task: “A follow-up with procurement is
 
 Total extraction time covers per-passage classification and final selection. It excludes the initial download and model load. It does not measure TTFT, token throughput, or cold-start latency. A note with multiple passages triggers multiple inference requests.
 
-In the saved 32-case Mac run, median total extraction took 3.575 seconds; the slowest case took 7.09 seconds. Each case used a different input, so these are not repeated trials. The Maya smoke test on the physical iPhone 15 Pro Max took 3.61 seconds after model load, with Metal GPU offload recorded. One run cannot establish full-suite phone performance, sustained memory use, or thermal stability.
+In the saved 32-case Mac run, median total extraction took 3.575 seconds; the slowest case took 7.09 seconds. Each case used a different input, so these are not repeated trials. The Maya test on the physical iPhone 15 Pro Max took 3.61 seconds after model load, with Metal GPU offload recorded. The remaining cases have not been run on the phone, and memory use and temperature still need testing over longer sessions.
 
-The Mac demo shortens the processing wait. It cannot support speed claims.
+The Mac demo skips part of the wait. Use the recorded test times above when comparing speed.
 
 ## Further phone measurements
 

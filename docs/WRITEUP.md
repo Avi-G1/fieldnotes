@@ -1,24 +1,24 @@
 # Why Fieldnotes missed Maya’s task
 
-Fieldnotes pulls possible actions out of meeting notes and shows the source sentence beside each one. While testing a note about an onboarding flow, I noticed it missed Maya’s offer to send a revision by Thursday. Showing a quote next to an action didn’t fix that; the model still had to find the right sentence.
+Fieldnotes pulls possible actions out of meeting notes and shows the source sentence beside each one. While testing a note about an onboarding flow, I noticed it missed Maya’s offer to send a revision by Thursday.
 
 ## Checking each passage
 
 My first version asked the model for a list of tasks in one request. It sometimes missed commitments later in the note. Asking it to write the tasks also left room for it to change their meaning.
 
-Now the app splits the note at sentence punctuation and asks the model whether each passage describes an action. It includes the full numbered note as context, then expects an index in response. The app checks that the index is valid and copies the original passage into the action and source fields.
+Now the app splits the note at sentence punctuation and asks the model whether each passage describes an action. It includes the full numbered note as context, then expects the passage number in response. The app checks that the number is valid and copies the original passage into the action and source fields.
 
 ## Adding English-language rules
 
-The model still misses direct requests and reported offers. Sometimes it picks up completed work or a suggestion someone has withdrawn. I added a few English-language rules for clear cases, such as an offer or a correction. Ambiguous passages are left to the model. The logs keep both its response and any rule override.
+The model still misses direct requests and reported offers. Sometimes it picks up completed work or a suggestion someone has withdrawn. I added a few English-language rules for clear cases, such as an offer or a correction. For less clear wording, the app uses the model’s decision. The logs record when a rule changes that decision.
 
-These rules have limits. They depend on English phrasing and sentence punctuation, and look for nearby cancellations or corrections. Two tasks in one sentence stay together. Each passage adds another model call, so the app has more inference work to do.
+The rules depend on English phrasing and sentence punctuation, and look for nearby cancellations or corrections. Two tasks in one sentence stay together. The app makes a separate model call for each passage.
 
 ## Testing 32 notes
 
-The regression set has 32 synthetic examples. It matched the expected passage in 31. I used the first 24 while building the rules; the other eight matched in seven. The miss was “A follow-up with procurement is needed next week.”
+The test set contains 32 made-up notes. The extractor matched the expected passages in 31. I used the first 24 during development. It passed seven of the eight additional tests. The miss was “A follow-up with procurement is needed next week.”
 
-This score only tells me how the code did on these examples. It doesn’t tell me how well it handles arbitrary notes. The app checks that indexes are valid and that actions and quotes use words from the note. Those checks catch malformed output and invented wording, but can’t tell whether the sentence is a real commitment. People still need to review the suggestions.
+I still need to test it on real meeting notes. The app checks that passage numbers are valid and that actions and quotes use words from the note. Those checks catch invalid responses and invented wording, but can’t tell whether the sentence is a real commitment. People still need to review the suggestions.
 
 ## Running it on an iPhone
 
