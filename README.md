@@ -6,17 +6,13 @@ A SwiftUI sample that finds possible action items in meeting notes and lets you 
 
 [Watch the 21-second demo](media/demo.mp4) · [Read the technical write-up](docs/WRITEUP.md) · [Validation and known limits](docs/VALIDATION.md)
 
-The demo was recorded from the app. I edited the cursor movement and shortened the processing wait, so it shows the workflow but not real inference speed.
+The video skips part of the wait.
 
-## What it demonstrates
+## How it works
 
-- RunAnywhere Swift SDK 0.20.24 with llama.cpp
-- Qwen2.5 3B Instruct, Q4_K_M (about 1.93 GB)
-- Classifies each passage with the full note as context, plus a few English-language rules
-- Verbatim source wording, expandable source review and independent action selection
-- Local-only SDK initialization and an allowlist for model artifact downloads
+Paste a note, find the tasks, and click any suggestion to see the sentence it came from. Select the ones you want to share.
 
-The model suggests possible actions. Check each one before sharing: it can miss a task or mistake a sentence for a commitment. The added language rules cover only some English phrasing.
+Fieldnotes runs Qwen2.5 3B Instruct on your Mac or iPhone using RunAnywhere’s Swift SDK and llama.cpp. It checks each passage with the full note as context and uses a few English-language rules to catch requests and offers the model misses. You still need to review the suggestions.
 
 ## Run on macOS
 
@@ -34,11 +30,11 @@ The RunAnywhere SDK source is included in this repo. The first build downloads i
 
 Requires iOS 17.5+ and Xcode. Open `Fieldnotes.xcodeproj`, choose the `Fieldnotes` scheme and a connected iPhone, set your Apple development team under **Signing & Capabilities**, then run. Change the bundle identifier if Xcode reports that it is already in use. A network connection is needed for the first model download.
 
-I tested one three-action note on an iPhone 15 Pro Max. It took 3.61 seconds after the model loaded; llama.cpp reported all 37 layers running on Metal. That timing comes from a single run. I haven’t tested this build in Airplane Mode or under sustained load. It doesn’t use or measure Apple’s Neural Engine or Qualcomm’s NPU. [Sanitized device log](docs/evidence/iphone-smoke.txt).
+In one test on my iPhone 15 Pro Max, it found all three tasks in the Maya note in 3.61 seconds after the model loaded. [Test results and limitations](docs/VALIDATION.md).
 
 ## Checks and evaluation
 
-Run the focused parser/language, evidence, and network-policy checks from the project root:
+Run the checks from the project root:
 
 ```sh
 sh scripts/check-selection.sh
@@ -46,11 +42,11 @@ sh scripts/check-evidence.sh
 sh scripts/check-network.sh
 ```
 
-The recorded 5 November run passed all 44 checks. The hybrid pipeline matched expected source passages in 31 of 32 synthetic examples. It missed an implied procurement follow-up. I used the first 24 examples while building the pipeline, so this score measures how the code handles those examples. See [the evaluation notes](docs/EVALUATION.md) for the details.
+All 44 checks passed on 5 November. The extractor matched the expected passages in 31 of 32 test notes. It missed an implied procurement follow-up. These are made-up notes; the first 24 were used during development. See [the evaluation notes](docs/EVALUATION.md) for the details.
 
 ## Privacy and downloads
 
-In local-only mode, the SDK patches skip telemetry and device registration. The app still connects to download the model. This repo contains no credentials or model weights. See [SDK compatibility notes](docs/SDK-COMPATIBILITY.md) and [third-party notices](THIRD_PARTY.md).
+The app connects to download the model, then processes notes on your device. I changed the SDK to turn off telemetry and device registration in local-only mode. Model files are downloaded separately. See [SDK compatibility notes](docs/SDK-COMPATIBILITY.md) and [third-party notices](THIRD_PARTY.md).
 
 ## License
 

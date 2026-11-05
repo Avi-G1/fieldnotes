@@ -15,4 +15,4 @@ The staged repository built with SwiftPM on macOS using cached dependencies. The
 
 The phone result covers one smoke case. Timings exclude the initial model download and load. The recorded backend is llama.cpp with Metal GPU offload; there is no NPU result. Airplane Mode operation, interrupted-download recovery, sustained thermal and memory behavior, exhaustive accessibility, and accuracy on varied real notes remain untested.
 
-The demo uses genuine app captures, with edited cursor movement and a shortened processing wait. It does not show live latency. The [technical write-up](WRITEUP.md) explains the design and tradeoffs.
+The demo uses app screenshots and an animated cursor. Part of the wait is cut, so use the recorded test times above to judge speed. The [technical write-up](WRITEUP.md) explains the design and tradeoffs.

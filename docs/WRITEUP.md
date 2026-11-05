@@ -24,9 +24,9 @@ This score only tells me how the code did on these examples. It doesn’t tell m
 
 Fieldnotes uses RunAnywhere Swift SDK 0.20.24, llama.cpp, and Qwen2.5 3B Instruct Q4_K_M in GGUF format. The model file is about 1.93 GB. Q4 quantization shrinks the weights, but the model still needs memory and can still miss tasks.
 
-On my iPhone 15 Pro Max, the three-action Maya example took 3.61 seconds after the model loaded. The log shows all 37 llama.cpp layers running on the Metal GPU. I haven’t run repeated timing trials or tested Airplane Mode on this build. The recorded run used the Metal GPU. The app needs a network connection for the first model download.
+On my iPhone 15 Pro Max, the three-action Maya example took 3.61 seconds after the model loaded. The log shows all 37 llama.cpp layers running on the Metal GPU. I haven’t run repeated timing trials or tested Airplane Mode on this build. The app needs a network connection for the first model download.
 
-The Mac demo shows note input, extraction, source review, and selection. I edited the cursor movement and shortened the wait during processing, so the video doesn’t show real inference speed. The [demo video](../media/demo.mp4) is here; [the README](../README.md) has build steps, and [validation notes](VALIDATION.md) list what I tested.
+[Watch the demo](../media/demo.mp4) or [build it yourself](../README.md). The video skips part of the wait; [the test notes](VALIDATION.md) have the measured results.
 
 ## What I’d test next
 
