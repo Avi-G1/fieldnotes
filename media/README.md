@@ -1,5 +1,5 @@
 # Demo
 
-The 21.3-second silent video demonstrates the native Mac app: note → local extraction → source review → action selection.
+This 21.3-second silent video shows the native Mac app: enter a note, extract actions locally, review their sources, and select actions.
 
-App pixels come from genuine captures. Cursor movement is edited and the processing wait is shortened. The video is a workflow demonstration, not a continuous recording or latency benchmark. The physical iPhone result is recorded separately in [the validation evidence](../docs/evidence/iphone-smoke.txt).
+The app footage comes from genuine captures. I edited the cursor movement and shortened the processing wait, so this shows the workflow rather than a continuous run or a latency benchmark. The physical iPhone result is in [the validation evidence](../docs/evidence/iphone-smoke.txt).

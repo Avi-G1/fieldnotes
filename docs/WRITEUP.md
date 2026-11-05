@@ -1,39 +1,33 @@
-# When a correct quote still gives the wrong action
+# Why Fieldnotes missed Maya’s task
 
-Fieldnotes turns meeting notes into action candidates. Each candidate keeps the exact source sentence so a person can check it before sharing. While testing a short note about an onboarding flow, I found a weakness that the quote alone could not solve: the model sometimes skipped Maya’s offer to send a revision by Thursday.
+Fieldnotes pulls possible actions out of meeting notes and shows the source sentence beside each one. While testing a note about an onboarding flow, I noticed it missed Maya’s offer to send a revision by Thursday. Showing a quote next to an action didn’t fix that; the model still had to find the right sentence.
 
-Source links establish provenance, but cannot show whether the extractor found every task or interpreted the sentence correctly. That distinction shaped the implementation.
+## Checking each passage
 
-## Make selection the model’s job
+My first version asked the model for a list of tasks in one request. It sometimes missed commitments later in the note. Asking it to write the tasks also left room for it to change their meaning.
 
-The first versions used a single request to produce a list of tasks. A small model could omit later commitments. A free-form response also gave the model room to rewrite tasks or add detail.
+Now the app splits the note at sentence punctuation and asks the model whether each passage describes an action. It includes the full numbered note as context, then expects an index in response. The app checks that the index is valid and copies the original passage into the action and source fields.
 
-Fieldnotes now splits a note into punctuation-delimited passages. For each passage, it asks the model to classify that target while supplying the full numbered note as context. The model returns an index, not new task wording. The app validates the response shape and range, then copies selected passage text into the action and source fields.
+## Adding English-language rules
 
-Traceable output can still select the wrong sentence. Copying it exactly would preserve the mistake as a bad action candidate.
+The model still misses direct requests and reported offers. Sometimes it picks up completed work or a suggestion someone has withdrawn. I added a few English-language rules for clear cases, such as an offer or a correction. Ambiguous passages are left to the model. The logs keep both its response and any rule override.
 
-## Use rules for clear English signals
+These rules have limits. They depend on English phrasing and sentence punctuation, and look for nearby cancellations or corrections. Two tasks in one sentence stay together. Each passage adds another model call, so the app has more inference work to do.
 
-The model can miss direct requests and reported offers, or select completed work and withdrawn suggestions. A small set of English-language rules now overrides its decision when wording gives a clear signal. Ambiguous passages stay with the model. Raw responses and rule overrides remain in the logs.
+## Testing 32 notes
 
-Model decisions and English-language rules both contribute to the hybrid result. The rules are incomplete: they depend on English phrasing, punctuation-based sentence splitting, and nearby references to cancellations or corrections. Multiple tasks in one sentence stay grouped as one item. More per-passage calls also add inference work.
+The regression set has 32 synthetic examples. It matched the expected passage in 31. I used the first 24 while building the rules; the other eight matched in seven. The miss was “A follow-up with procurement is needed next week.”
 
-## Keep the failure in the report
+This score only tells me how the code did on these examples. It doesn’t tell me how well it handles arbitrary notes. The app checks that indexes are valid and that actions and quotes use words from the note. Those checks catch malformed output and invented wording, but can’t tell whether the sentence is a real commitment. People still need to review the suggestions.
 
-The final regression set contains 32 synthetic examples. The expected source selections matched in 31 cases. The first 24 cases informed implementation; the eight additional cases matched in seven. The remaining miss was: “A follow-up with procurement is needed next week.”
+## Running it on an iPhone
 
-That result shows how the implementation handles known examples. It says little about arbitrary meeting notes. The comparison checks selected source text against expected passages; it cannot replace semantic review or user testing.
+Fieldnotes uses RunAnywhere Swift SDK 0.20.24, llama.cpp, and Qwen2.5 3B Instruct Q4_K_M in GGUF format. The model file is about 1.93 GB. Q4 quantization shrinks the weights, but the model still needs memory and can still miss tasks.
 
-The app also validates that the response contains legal indexes and that displayed task text and quotes come from the note. These checks catch malformed output and invented wording. They cannot prove that a sentence is actionable. Review remains part of the feature.
+On my iPhone 15 Pro Max, the three-action Maya example took 3.61 seconds after the model loaded. The log shows all 37 llama.cpp layers running on the Metal GPU. I haven’t run repeated timing trials or tested Airplane Mode on this build. The recorded run used the Metal GPU. The app needs a network connection for the first model download.
 
-## Run it on a phone
-
-Fieldnotes uses RunAnywhere Swift SDK 0.20.24 with llama.cpp and Qwen2.5 3B Instruct Q4_K_M in GGUF format. The model file is about 1.93 GB. Q4 quantization makes the weights smaller; it does not remove their memory cost or guarantee better task selection.
-
-On a physical iPhone 15 Pro Max, the three-action Maya example completed in 3.61 seconds after model load. The log records all 37 llama.cpp layers offloaded to the Metal GPU. This is one smoke-test result; repeated timing trials have not been run. It provides no evidence of Apple Neural Engine or Qualcomm NPU use. Airplane Mode has not been verified on the current phone build, and the first model acquisition needs a network connection or local transfer.
-
-The Mac demo shows note input, extraction, source review, and selection. It uses genuine app captures with edited cursor movement and a shortened processing wait, so it should not be used to infer latency. The [demo video](../media/demo.mp4) shows the workflow; the [repository README](../README.md) has the build steps, and [validation notes](VALIDATION.md) record test scope and remaining limits.
+The Mac demo shows note input, extraction, source review, and selection. I edited the cursor movement and shortened the wait during processing, so the video doesn’t show real inference speed. The [demo video](../media/demo.mp4) is here; [the README](../README.md) has build steps, and [validation notes](VALIDATION.md) list what I tested.
 
 ## What I’d test next
 
-The known failure points to the next test: vary how people imply work without saying “I’ll do it,” then check whether rule changes recover those tasks without promoting status updates or tentative ideas. I would also run repeated timing and memory trials on the phone, then verify cached inference with Wi-Fi off.
+Next I want to test more indirect ways people assign work without saying “I’ll do it.” I’ll check whether rules catch those cases without turning status updates or tentative ideas into tasks. I also want to repeat the phone timing, measure memory, and try cached inference with Wi-Fi off.

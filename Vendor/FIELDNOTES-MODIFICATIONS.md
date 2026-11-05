@@ -1,6 +1,6 @@
 # Local changes to RunAnywhere Swift SDK
 
-The SDK source in this directory is based on RunAnywhere Swift SDK 0.20.24, upstream commit `f269ccd53f04b2fa2a4767f7264a40363b7ec74a`. These local changes are maintained by the Fieldnotes sample and are not an official RunAnywhere release. The upstream license is preserved in [`LICENSE`](LICENSE).
+This SDK source is based on RunAnywhere Swift SDK 0.20.24, upstream commit `f269ccd53f04b2fa2a4767f7264a40363b7ec74a`. Fieldnotes maintains the changes below; they are not an official RunAnywhere release. The upstream license is in [`LICENSE`](runanywhere-swift/LICENSE).
 
 | SDK file | Fieldnotes change |
 | --- | --- |
@@ -11,4 +11,4 @@ The SDK source in this directory is based on RunAnywhere Swift SDK 0.20.24, upst
 | `Sources/RunAnywhere/HttpTransport/FieldnotesNetworkPolicy.swift` | Adds the Fieldnotes policy: body-free GET/HEAD to the pinned Qwen artifact, with HTTPS redirects limited to Hugging Face/Xet storage hosts. |
 | `Sources/RunAnywhere/Public/RunAnywhere.swift` | Uses a process-cached ephemeral device ID in local-only mode and stores the macOS model cache under Application Support to avoid observed startup stalls. |
 
-The request policy is exercised by [`../../Tests/NetworkPolicyTests.swift`](../../Tests/NetworkPolicyTests.swift). Compatibility context and the model-cache migration caveat are in [`../docs/SDK-COMPATIBILITY.md`](../docs/SDK-COMPATIBILITY.md). Existing SDK file notices are retained. Review the full SDK license before using or redistributing the SDK or its modifications.
+[`Tests/NetworkPolicyTests.swift`](../Tests/NetworkPolicyTests.swift) tests the request policy. [SDK compatibility notes](../docs/SDK-COMPATIBILITY.md) explain the changes and model-cache migration. Existing SDK file notices remain in place. Read the full SDK license before using or redistributing the SDK or these modifications.

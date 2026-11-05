@@ -1,7 +1,7 @@
 # Extraction contract
 
-The model sees numbered source passages and returns only `{"lines":[1,2]}` (or an empty array). SourceSelection validates the shape, integer indexes, uniqueness, and bounds. The app copies those passages into task/quote pairs, with owner/deadline null. The model never supplies new task wording or quotations in the shipped flow.
+The model receives numbered source passages and returns only `{"lines":[1,2]}` or `{"lines":[]}`. SourceSelection checks the response shape, integer indexes, duplicates, and bounds. The app copies the selected passages into task/quote pairs and sets owner and deadline to `null`. In the shipped flow, the model cannot write task text or quotes.
 
-GroundedEvaluation validates the resulting action envelope: nonempty tasks, exact source quotes, task wording present in the quote, and any nonnull metadata present in that quote. It does not establish semantic entailment. A copied status update can still be an incorrect action candidate.
+GroundedEvaluation checks the action envelope: tasks must be nonempty, quotes must match the source, task wording must appear in the quote, and any non-null metadata must appear there too. These checks do not establish semantic entailment. A copied status update can still be a bad action candidate.
 
-Run `sh scripts/check-evidence.sh` and `sh scripts/check-selection.sh` from the project root. See docs/VALIDATION.md for real inference results and semantic review.
+From the project root, run `sh scripts/check-evidence.sh` and `sh scripts/check-selection.sh`. See [validation notes](../docs/VALIDATION.md) for inference results and semantic review.
