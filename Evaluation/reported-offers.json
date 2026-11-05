@@ -1,0 +1,89 @@
+[
+  {
+    "id": "reported-offer-maya",
+    "notes": "Maya said she can send the revised onboarding flow by Thursday. I\u2019ll ask design to review it Friday morning. We should decide whether to include the offline model download step before the next release.",
+    "expected": {
+      "actions": [
+        {
+          "task": "Maya said she can send the revised onboarding flow by Thursday",
+          "quote": "Maya said she can send the revised onboarding flow by Thursday",
+          "owner": null,
+          "deadline": null
+        },
+        {
+          "task": "I\u2019ll ask design to review it Friday morning",
+          "quote": "I\u2019ll ask design to review it Friday morning",
+          "owner": null,
+          "deadline": null
+        },
+        {
+          "task": "We should decide whether to include the offline model download step before the next release",
+          "quote": "We should decide whether to include the offline model download step before the next release",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Reported concrete offers count; abilities, completed and cancelled work do not."
+  },
+  {
+    "id": "reported-offer-other",
+    "notes": "Nina said she can prepare the release notes by Tuesday. Omar offered to check the links.",
+    "expected": {
+      "actions": [
+        {
+          "task": "Nina said she can prepare the release notes by Tuesday",
+          "quote": "Nina said she can prepare the release notes by Tuesday",
+          "owner": null,
+          "deadline": null
+        },
+        {
+          "task": "Omar offered to check the links",
+          "quote": "Omar offered to check the links",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Reported concrete offers count; abilities, completed and cancelled work do not."
+  },
+  {
+    "id": "ability-not-task",
+    "notes": "Maya can write Swift. Nina said she can speak French.",
+    "expected": {
+      "actions": []
+    },
+    "why": "Reported concrete offers count; abilities, completed and cancelled work do not."
+  },
+  {
+    "id": "reported-offer-cancelled",
+    "notes": "Nina offered to prepare the release notes. Later we cancelled that task.",
+    "expected": {
+      "actions": []
+    },
+    "why": "Reported concrete offers count; abilities, completed and cancelled work do not."
+  },
+  {
+    "id": "reported-offer-completed",
+    "notes": "Maya said she sent the revised onboarding flow yesterday.",
+    "expected": {
+      "actions": []
+    },
+    "why": "Reported concrete offers count; abilities, completed and cancelled work do not."
+  },
+  {
+    "id": "reported-agreement",
+    "notes": "Ravi agreed to test the offline flow before Friday.",
+    "expected": {
+      "actions": [
+        {
+          "task": "Ravi agreed to test the offline flow before Friday",
+          "quote": "Ravi agreed to test the offline flow before Friday",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Reported concrete offers count; abilities, completed and cancelled work do not."
+  }
+]

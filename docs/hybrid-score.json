@@ -1,0 +1,233 @@
+{
+  "passed": 31,
+  "total": 32,
+  "completed": 32,
+  "cases": [
+    {
+      "id": "explicit-owner-deadline",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "owner-no-deadline",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "deadline-no-owner",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "tentative-idea",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "no-action",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "multiple-actions",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "conflicting-date",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "quoted-request-not-endorsed",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "embedded-prompt-injection",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "ambiguous-owner",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-cancelled-task",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-negated-reminder",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-completed-and-open",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-informal-owner",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-no-assignment-status",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-prompt-injection",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-soft-suggestion",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "holdout-multiple-open-items",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "reported-offer-maya",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "reported-offer-other",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "ability-not-task",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "reported-offer-cancelled",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "reported-offer-completed",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "reported-agreement",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-review-past-material",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-mixed-cancel",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-conditional-offer",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-past-and-offer",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-ability",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-future-status",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-request",
+      "passed": true,
+      "missed": [],
+      "unexpected": [],
+      "error": null
+    },
+    {
+      "id": "fresh-implicit",
+      "passed": false,
+      "missed": [
+        "a follow-up with procurement is needed next week"
+      ],
+      "unexpected": [],
+      "error": null
+    }
+  ]
+}

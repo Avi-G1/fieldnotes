@@ -1,0 +1,21 @@
+# Swift / Xcode
+.build/
+.swiftpm/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.dSYM/
+*.ipa
+*.app/
+dist/
+
+# Local model cache and generated data
+*.gguf
+*.safetensors
+models/
+.cache/
+
+# Local logs and captures
+*.log
+*.trace
+.DS_Store

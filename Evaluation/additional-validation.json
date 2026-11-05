@@ -1,0 +1,101 @@
+[
+  {
+    "id": "fresh-review-past-material",
+    "notes": "Please review yesterday's notes before Friday.",
+    "expected": {
+      "actions": [
+        {
+          "task": "Please review yesterday's notes before Friday",
+          "quote": "Please review yesterday's notes before Friday",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-mixed-cancel",
+    "notes": "Leah will publish the update. Tom will book a room. Cancel that request.",
+    "expected": {
+      "actions": [
+        {
+          "task": "Leah will publish the update",
+          "quote": "Leah will publish the update",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-conditional-offer",
+    "notes": "Maybe I can prepare a draft if we decide to proceed.",
+    "expected": {
+      "actions": []
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-past-and-offer",
+    "notes": "We completed the migration yesterday. Elena offered to test the backup tomorrow.",
+    "expected": {
+      "actions": [
+        {
+          "task": "Elena offered to test the backup tomorrow",
+          "quote": "Elena offered to test the backup tomorrow",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-ability",
+    "notes": "Drew can understand German.",
+    "expected": {
+      "actions": []
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-future-status",
+    "notes": "The office will be closed on Friday.",
+    "expected": {
+      "actions": []
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-request",
+    "notes": "Could you contact the printer before noon?",
+    "expected": {
+      "actions": [
+        {
+          "task": "Could you contact the printer before noon",
+          "quote": "Could you contact the printer before noon",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  },
+  {
+    "id": "fresh-implicit",
+    "notes": "A follow-up with procurement is needed next week.",
+    "expected": {
+      "actions": [
+        {
+          "task": "A follow-up with procurement is needed next week",
+          "quote": "A follow-up with procurement is needed next week",
+          "owner": null,
+          "deadline": null
+        }
+      ]
+    },
+    "why": "Additional unseen wording and mixed-context validation."
+  }
+]

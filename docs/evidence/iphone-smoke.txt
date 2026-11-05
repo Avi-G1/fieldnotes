@@ -1,0 +1,13 @@
+Device: iPhone 15 Pro Max, iOS 27.0.1
+Model: Qwen2.5 3B Instruct Q4_K_M
+Backend: llama.cpp with Metal GPU offload
+Model supplied by local transfer from verified SHA-256 cache
+[RAC][DEBUG][LLM.LlamaCpp.GGML] load_tensors: offloaded 37/37 layers to GPU | file=llamacpp_backend.cpp:250, func=llama_log_callback
+🔍 [LLM.LlamaCpp.GGML] load_tensors: offloaded 37/37 layers to GPU | source_file=llamacpp_backend.cpp:250, source_function=llama_log_callback
+[RAC][DEBUG][LLM.LlamaCpp.GGML] load_tensors: offloaded 37/37 layers to GPU | file=llamacpp_backend.cpp:250, func=llama_log_callback
+🔍 [LLM.LlamaCpp.GGML] load_tensors: offloaded 37/37 layers to GPU | source_file=llamacpp_backend.cpp:250, source_function=llama_log_callback
+SMOKE SUCCESS: On-device · 3.61 s total · fieldnotes-qwen-3b-q4-verified · 3 source passages
+ACTION: Maya said she can send the revised onboarding flow by Thursday | QUOTE: Maya said she can send the revised onboarding flow by Thursday
+ACTION: I’ll ask design to review it Friday morning | QUOTE: I’ll ask design to review it Friday morning
+ACTION: We should decide whether to include the offline model download step before the next release | QUOTE: We should decide whether to include the offline model download step before the next release
+Confirmed app process remained running after completion.
